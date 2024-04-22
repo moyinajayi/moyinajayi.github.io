@@ -19,8 +19,8 @@
 
 ### Category Name 2
 
-- [Project 1 Title](http://example.com/)
-- [Project 2 Title](http://example.com/)
+- [Customer Segmentation analysis](https://github.com/moyinajayi/kMeansClustering1)
+- [Income Predictions](https://github.com/moyinajayi/MachineLearning)
 - [Project 3 Title](http://example.com/)
 - [Project 4 Title](http://example.com/)
 - [Project 5 Title](http://example.com/)
