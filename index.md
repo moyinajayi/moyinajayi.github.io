@@ -2,10 +2,10 @@
 
 ---
 
-### Category Name 1 
+### My projects
 
 [Predicting Apple Quality using XgBoost](https://github.com/moyinajayi/MachineLearning))
-<img src="images/KMeans.png?raw=true"/>
+<img src="images/Kmeans.png?raw=true"/>
 
 ---
 <!--#- [Project 2 Title](/pdf/sample_presentation.pdf) -->
