@@ -4,16 +4,16 @@
 
 ### Category Name 1 
 
-[Project 1 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Predicting Apple Quality using XgBoost](https://github.com/moyinajayi/MachineLearning))
+<img src="images/KMeans.png?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+<!--#- [Project 2 Title](/pdf/sample_presentation.pdf) -->
+<!--#-  <img src="images/dummy_thumbnail.jpg?raw=true"/> -->
 
 ---
-[Project 3 Title](http://example.com/)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[My Medium Articles here](https://medium.com/@moyin.ajayi)
+<img src="images/mmedium.jpg?raw=true"/>
 
 ---
 
