@@ -8,6 +8,22 @@ description: > # your text below (remove <br> elements if you don't need line br
   <br><br>
   I am also a certified Azure data engineer with experience building data pipelines in Azure. 
   <br><br>
+
+   <div class="about__skill-info">
+            <h3 class="heading-quaternary about__heading-quaternary">
+              My Skills
+            </h3>
+            <ul class="about__skills">
+              <li class="about__skill">python</li>
+              <li class="about__skill">sql</li>
+              <li class="about__skill">java</li>
+              <li class="about__skill">git</li>
+              <li class="about__skill">vscode</li>
+              <li class="about__skill">html</li>
+              <li class="about__skill">javascript</li>
+            </ul>
+          </div>
+          
   <a href="https://www.linkedin.com/in/moyinajayi/">View My LinkedIn Profile</a> 
   
 remote_theme: pages-themes/minimal@v0.2.0
