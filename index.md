@@ -5,6 +5,10 @@
 ### My projects
 
 [Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md)
+[Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/incomeprediction.html)
+
+
+<a href="./pages/incomeprediction.html"> Income Predictions </a>
 
 <!--#- <img src="images/incomehigh.jpeg?raw=true"/> -->
 ![image](https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/756f2cea-3875-49e8-b4a7-eebcf63e8d61)
