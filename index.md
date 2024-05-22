@@ -5,11 +5,10 @@
 ### My projects
 
 [Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md))
-<img src="images/Incomechart.jpg?raw=true"/>
+<img src="images/incomechart.jpeg?raw=true"/>
 
 
-<!--#-[Customer Segmentation Analysis ](https://github.com/moyinajayi/MachineLearning)) -->
-
+[Customer Segmentation analysis](https://github.com/moyinajayi/kMeansClustering1)
 <img src="images/Kmeans.png?raw=true"/>
 
 ---
