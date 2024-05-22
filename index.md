@@ -5,7 +5,7 @@
 ### My projects
 
 [Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md)
-[Income prediction and classification ](incomeprediction.html)
+[Income prediction and classificationn ](incomeprediction.html)
 
 
 
