@@ -4,7 +4,7 @@
 
 ### My projects
 
-[Predicting Apple Quality using XgBoost](https://github.com/moyinajayi/MachineLearning))
+[Income Prediction using Binary classification Algorithms ](https://github.com/moyinajayi/MachineLearning))
 <img src="images/Kmeans.png?raw=true"/>
 
 ---
