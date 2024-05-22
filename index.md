@@ -16,7 +16,6 @@
 
 [Customer Segmentation analysis](https://github.com/moyinajayi/kMeansClustering1)
 <img src="images/Kmeans.png?raw=true"/>
-![Uploading image.png…]()
 
 
 ---
@@ -24,8 +23,8 @@
 <!--#-  <img src="images/dummy_thumbnail.jpg?raw=true"/> -->
 
 ---
-[My Medium Articles here](https://medium.com/@moyin.ajayi)
-<img src="images/mmedium.jpg?raw=true"/>
+<!--#-[My Medium Articles here](https://medium.com/@moyin.ajayi) -->
+<!--#- <img src="images/mmedium.jpg?raw=true"/> -->
 
 ---
 
