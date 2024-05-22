@@ -4,7 +4,10 @@
 
 ### My projects
 
-[Income Prediction using Binary classification Algorithms ](https://github.com/moyinajayi/MachineLearning))
+[Customer Segmentation Analysis ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md
+
+[Customer Segmentation Analysis ](https://github.com/moyinajayi/MachineLearning))
+
 <img src="images/Kmeans.png?raw=true"/>
 
 ---
