@@ -28,7 +28,6 @@ description: > # your text below (remove <br> elements if you don't need line br
               <li class="about__skill">sql</li>
               <li class="about__skill">java</li>
               <li class="about__skill">git</li>
-              <li class="about__skill">vscode</li>
               <li class="about__skill">html</li>
               <li class="about__skill">javascript</li>
             </ul>
