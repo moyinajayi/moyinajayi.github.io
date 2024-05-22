@@ -4,9 +4,11 @@
 
 ### My projects
 
-[Customer Segmentation Analysis ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md
+[Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md))
+<img src="images/Incomechart.jpg?raw=true"/>
 
-[Customer Segmentation Analysis ](https://github.com/moyinajayi/MachineLearning))
+
+<!--#-[Customer Segmentation Analysis ](https://github.com/moyinajayi/MachineLearning)) -->
 
 <img src="images/Kmeans.png?raw=true"/>
 
