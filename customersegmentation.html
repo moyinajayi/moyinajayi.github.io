@@ -1,0 +1,54 @@
+<h2 id="customer-behavior-analysis-and-segmentation-using-kmeans-">Customer Behavior analysis and segmentation using KMeans.</h2>
+<p><strong>Project description:</strong>  This is a data analysis project that involves reading, cleaning, exploring, and performing advanced analyses on a retail dataset.
+The project uses Kmeans Clustering algorithm for identifying .</p>
+<p>This project covers data cleaning, exploratory data analysis (EDA), data visualization, and customer segmentation using machine learning techniques. </p>
+<h3 id="1-importing-libraries-and-loading-the-data">1. Importing libraries and Loading the data</h3>
+<p> I used a dataset named OnlineRetail.csv, which contains transactional data from an online retail store. The primary goal was to explore the dataset, clean it, visualize important patterns, and perform customer segmentation</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1dd5cc1a-05f8-4f53-82ab-93ed3cef801a" alt="image">\ <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/ef198a92-0413-4d6f-9b09-b7abd3f70b30" alt="image"></p>
+<h3 id="2-data-visualization">2. Data Visualization</h3>
+<p>After removing the nulll values from the dataset, I created two addditonal columsn &#39;Month&#39; and &#39;Day of Week&#39; based of tdh invoice date column. 
+The goal was to further understand if there were any pointers to the actual day of week, or some other insights from the date
+Below  are some visualizatiions showing trend and distributions.</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/12ea5d21-e2d4-4d01-9b60-3e779eadfd20" alt="image"></p>
+<p>The Barplots show that there were no transactions on saturday, and even though the highest transactions were in the 11th month, the total amount spent was highest in the first month in January</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/39f1f7ee-a0ab-4aa9-874f-a921c7b192af" alt="image"></p>
+<p>In addition this visuals show for teh top 5 countries and the tiop stock items purchased 
+<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/fa2c6cc6-828c-4e81-a884-c5253ae4185c" alt="image"></p>
+<h3 id="3-analysis-using-recency-frequency-and-spend-rfs-">3.Analysis using Recency Frequency and Spend (RFS)</h3>
+<p>Recency, Frequency, Monetary model (RFM), is a behavior based analysis technique used to segment customers by examining their transaction history. Recency is calculated as the number of days since the last purchase
+Recency is calculated, frequency is the number of transactions per customer, and Spend is the total amount spent per customer.</p>
+<pre><code class="lang-python"><span class="hljs-attr">last_transaction_date</span> = df.groupby(<span class="hljs-string">'CustomerID'</span>)[<span class="hljs-string">'InvoiceDate'</span>].max()
+<span class="hljs-attr">reference_date</span> = max(df[<span class="hljs-string">'InvoiceDate'</span>])
+<span class="hljs-attr">days_difference</span> = (reference_date - last_transaction_date).dt.days
+<span class="hljs-attr">days_difference</span> = days_difference.reset_index().rename(columns={<span class="hljs-string">'InvoiceDate'</span>: <span class="hljs-string">'recency'</span>})
+</code></pre>
+<p>These 2 metrics are then merged into a single dataframe.</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/0edc2421-bd39-4d44-919c-a4229c163394" alt="image"></p>
+<p>And these are boxplots to show the Outliers in the RFS data distributions</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/a58e8814-c381-4661-8e36-f87844461b16" alt="image"></p>
+<p>The outliers were mostly in the Frequency and spend coluumns and were removed before applying Kmeans algorthm</p>
+<h3 id="4-feature-scaling">4. Feature scaling</h3>
+<p>The outliers were removed in X, and then feature scaling </p>
+<pre><code class="lang-python">from sklearn.preprocessing <span class="hljs-built_in">import</span> StandardScaler
+<span class="hljs-attr">X=rfs.iloc[:,1:]</span>
+<span class="hljs-attr">scaler</span> = StandardScaler()
+<span class="hljs-attr">X</span> = scaler.fit_transform(X)
+</code></pre>
+<h3 id="4-clustering-customers-using-kmeans">4. Clustering customers using KMeans</h3>
+<p>I adopted the Yellowbirck cluster for visualizing the Kmeans distorion score Elbow. As shown below, the k elbows at 4, indicating 4 clusters.</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1398c04e-8d19-407a-a8d1-6653e02ad672" alt="image"></p>
+<p>Then I fitted the Kmeans and then updated the RFS dataframe with teh clusters identified.</p>
+<pre><code class="lang-python"><span class="hljs-attribute">kmeans</span>= KMeans(n_clusters=4,n_init=<span class="hljs-string">'auto'</span>,random_state=42)
+kmeans.fit(X)
+</code></pre>
+<h3 id="4-results-and-findings-recency-and-spend">4. Results and findings : recency and Spend</h3>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/50c76e6a-514d-4ffd-bbab-df17a4b89970" alt="image"></p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/9dac9e13-6710-4373-ae05-4e5ab83c8d22" alt="image"></p>
+<p>These are the four clusters identified from the results</p>
+<h5 id="cluster-0-high-recency-low-frequency-low-spend">Cluster 0: High recency, low frequency , low Spend</h5>
+<h5 id="cluster-1-low-recency-high-frequency-moderate-spend">Cluster 1: Low recency, High Frequency, moderate Spend</h5>
+<h5 id="cluster-2-low-recency-low-frequency-low-spend">Cluster 2: Low Recency, Low Frequency, Low Spend</h5>
+<h5 id="cluster-3-low-recency-high-frequency-high-spend">Cluster 3: Low Recency,  High Frequency, High Spend</h5>
+<p>In addition, these are the top items by Amount spent.</p>
+<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/828789d9-8209-4292-956d-362db448f755" alt="image"></p>
+<p>For more details see <a href="https://github.com/moyinajayi/Retail_customer_Clustering">Repository</a></p>
