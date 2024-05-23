@@ -1,42 +1,54 @@
+
+<p> </p>
+
 <h2 id="income-prediction-on-the-census-population-dataset">Income Prediction on the Census Population dataset</h2>
 <p><strong>Project description:</strong> </p>
 <p>This project  involves data cleaning, data wrangling, feature correlation, model training and model evaluation. The project goal was do understand what factors were significant to determine salary income. The approach for this was a binary classification.
-The goal of this is to Predict whether income exceeds $50K/yr based on census data and what census features can lead to higher income</p>
+	The goal of this is to Predict whether income exceeds $50K/yr based on census data and what census features can lead to higher income
+</p>
 <h3 id="1-data-exploration">1. Data Exploration</h3>
 <p>The features and target dataset were merged into one dataframe and the table below shows an idea of what the dataframe looked like. The initial datafra,me had 48842 rows before cleaning</p>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/6ca57b30-5f3a-41f0-9a18-0135aa31cf7c" alt="image"></p>
 <h3 id="2-data-cleaning-and-alignment">2. Data Cleaning  and alignment</h3>
 <p>AT first glance, the data in the Target column seems to have a mismatch. SO Daata cleaning was done to align teh column to have just 2 target labels.
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/dcefcd9d-08a3-4ba0-aef2-6edbaf4413c8" alt="image"></p>
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/dcefcd9d-08a3-4ba0-aef2-6edbaf4413c8" alt="image">
+</p>
 <pre><code class="lang-python">df[<span class="hljs-string">'income'</span>] = df[<span class="hljs-string">'income'</span>].replace([<span class="hljs-string">'&lt;=50K.'</span>, <span class="hljs-string">'&gt;50K.'</span>], [<span class="hljs-string">'&lt;=50K'</span>,<span class="hljs-string">'&gt;50K'</span>])
 df[<span class="hljs-string">'income'</span>].value_counts()
 </code></pre>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/8d6db985-bd32-4f71-9fe6-a8ef07bf24bc" alt="image"></p>
 <h3 id="3-data-visualizations">3. Data visualizations</h3>
 <p>Distribution of Age, Fnlwgt and education
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/0adfb1db-52e9-4c8f-8d51-49a43076bf75" alt="image"></p>
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/0adfb1db-52e9-4c8f-8d51-49a43076bf75" alt="image">
+</p>
 <p>Distribution of Occupation, Family Relationship and Race
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/da194dfe-afc3-4c85-badc-ea9ea9b5b11a" alt="image"></p>
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/da194dfe-afc3-4c85-badc-ea9ea9b5b11a" alt="image">
+</p>
 <h3 id="4-feature-scaling-and-correlation">4. Feature scaling and correlation</h3>
 <p>The features in the data were then scaled using a standard scaler. Then afterwards, a correlation heatmap was displayed to identify highly correlated features in the dataset</p>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/582ac9fc-aa67-4d29-bc8c-fe15e4a1d9fc" alt="image"></p>
 <h3 id="5-model-training">5. Model Training</h3>
 <p>The approach to this was to train multiple models and identify the best performing based on  Accuracy and Recall metrics.
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/5a9580f9-c49c-4d74-b02a-346c5390944a" alt="image"></p>
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/5a9580f9-c49c-4d74-b02a-346c5390944a" alt="image">
+</p>
 <p>The 4 Models selected for training were teh Logistic regression, Random Forest, Decision Tree, XGBoost classifiers. These are popular models typically used in binary classification.
-As this was a simple project, no hyper parameter tuning was done. The default model objects were simply initialized to train the model.</p>
+	As this was a simple project, no hyper parameter tuning was done. The default model objects were simply initialized to train the model.
+</p>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/f3b3c099-558a-483d-8729-1760fff7a06c" alt="image">
-Below is the result of the model training for each algorithm .
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/a1827a41-5910-43ae-83d6-7e9672fe7d3f" alt="image"></p>
+	Below is the result of the model training for each algorithm .
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/a1827a41-5910-43ae-83d6-7e9672fe7d3f" alt="image">
+</p>
 <h3 id="6-model-evaluation">6. Model Evaluation</h3>
 <p>The XGBoost classifier seems to be the best performing with  </p>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/b0171b81-f750-4106-98b3-6fe87928a9d2" alt="image"></p>
 <p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/755f60bd-014e-4488-a921-3097f8c58b3d" alt="image"></p>
 <h3 id="7-model-feature-importance">7. Model Feature Importance</h3>
 <p>The feature Importance was then calculated to understand teh significant features from  the dataset.
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/6cb7d913-a4b3-4973-804d-dc69a30e1119" alt="image"></p>
+	<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/6cb7d913-a4b3-4973-804d-dc69a30e1119" alt="image">
+</p>
 <p>Relationship, capital gain, Education num, marital status as well as capital loss are featuesres that can influence the salary income.</p>
 <h3 id="8-conclusion">8. Conclusion</h3>
 <p>I have identified features that could be significant in determinging a higher salary range in the population dataset. 
-Future work might be to further engineer features, or apply hyper parameter tuning to select best params for fine tuning the model and improving performance.</p>
-<p>For more details see [Repo(<a href="https://guides.github.com/features/mastering-markdown/">https://guides.github.com/features/mastering-markdown/</a>).</p>
+	Future work might be to further engineer features, or apply hyper parameter tuning to select best params for fine tuning the model and improving performance.
+</p>
+<p>For more details see Repo(<a href="https://github.com/moyinajayi/Income_prediction_xgboost/">Repository) </a.</p>
