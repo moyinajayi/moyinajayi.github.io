@@ -6,15 +6,16 @@
 
 [Income prediction and classification ](https://github.com/moyinajayi/moyinajayi.github.io/blob/master/IncomPredictionPage.md)
 
-[Income prediction and classification ](incomeprediction.html)
+<!-- [Income prediction and classification ](incomeprediction.html) -->
 
+This project includes machine learning to predict the income classes in the popular census population dataset. The steps include Exploratory data analysis, Data cleaning and iterative model training with multiple classification algorthms.
 
 
 <!--#- <img src="images/incomehigh.jpeg?raw=true"/> -->
 ![image](https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/756f2cea-3875-49e8-b4a7-eebcf63e8d61)
 
 
-[Customer Segmentation analysis](customersegmentation.html)
+ [Customer Segmentation analysis](customersegmentation.html)
 
 <img src="images/Kmeans.png?raw=true"/>
 
