@@ -90,4 +90,9 @@ These are the four clusters identified from the results
 ##### Cluster 3: Low Recency,  High Frequency, High Spend
 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+In addition, these are the top items by Amount spent.
+
+![image](https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/828789d9-8209-4292-956d-362db448f755)
+
+
+For more details see [Repository](https://github.com/moyinajayi/Retail_customer_Clustering)
