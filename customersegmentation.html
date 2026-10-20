@@ -1,54 +1,124 @@
-<h2 id="customer-behavior-analysis-and-segmentation-using-kmeans-">Customer Behavior analysis and segmentation using KMeans.</h2>
-<p><strong>Project description:</strong>  This is a data analysis project that involves reading, cleaning, exploring, and performing advanced analyses on a retail dataset.
-The project uses Kmeans Clustering algorithm for identifying .</p>
-<p>This project covers data cleaning, exploratory data analysis (EDA), data visualization, and customer segmentation using machine learning techniques. </p>
-<h3 id="1-importing-libraries-and-loading-the-data">1. Importing libraries and Loading the data</h3>
-<p> I used a dataset named OnlineRetail.csv, which contains transactional data from an online retail store. The primary goal was to explore the dataset, clean it, visualize important patterns, and perform customer segmentation</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1dd5cc1a-05f8-4f53-82ab-93ed3cef801a" alt="image">\ <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/ef198a92-0413-4d6f-9b09-b7abd3f70b30" alt="image"></p>
-<h3 id="2-data-visualization">2. Data Visualization</h3>
-<p>After removing the nulll values from the dataset, I created two addditonal columsn &#39;Month&#39; and &#39;Day of Week&#39; based of tdh invoice date column. 
-The goal was to further understand if there were any pointers to the actual day of week, or some other insights from the date
-Below  are some visualizatiions showing trend and distributions.</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/12ea5d21-e2d4-4d01-9b60-3e779eadfd20" alt="image"></p>
-<p>The Barplots show that there were no transactions on saturday, and even though the highest transactions were in the 11th month, the total amount spent was highest in the first month in January</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/39f1f7ee-a0ab-4aa9-874f-a921c7b192af" alt="image"></p>
-<p>In addition this visuals show for teh top 5 countries and the tiop stock items purchased 
-<img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/fa2c6cc6-828c-4e81-a884-c5253ae4185c" alt="image"></p>
-<h3 id="3-analysis-using-recency-frequency-and-spend-rfs-">3.Analysis using Recency Frequency and Spend (RFS)</h3>
-<p>Recency, Frequency, Monetary model (RFM), is a behavior based analysis technique used to segment customers by examining their transaction history. Recency is calculated as the number of days since the last purchase
-Recency is calculated, frequency is the number of transactions per customer, and Spend is the total amount spent per customer.</p>
-<pre><code class="lang-python"><span class="hljs-attr">last_transaction_date</span> = df.groupby(<span class="hljs-string">'CustomerID'</span>)[<span class="hljs-string">'InvoiceDate'</span>].max()
-<span class="hljs-attr">reference_date</span> = max(df[<span class="hljs-string">'InvoiceDate'</span>])
-<span class="hljs-attr">days_difference</span> = (reference_date - last_transaction_date).dt.days
-<span class="hljs-attr">days_difference</span> = days_difference.reset_index().rename(columns={<span class="hljs-string">'InvoiceDate'</span>: <span class="hljs-string">'recency'</span>})
-</code></pre>
-<p>These 2 metrics are then merged into a single dataframe.</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/0edc2421-bd39-4d44-919c-a4229c163394" alt="image"></p>
-<p>And these are boxplots to show the Outliers in the RFS data distributions</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/a58e8814-c381-4661-8e36-f87844461b16" alt="image"></p>
-<p>The outliers were mostly in the Frequency and spend coluumns and were removed before applying Kmeans algorthm</p>
-<h3 id="4-feature-scaling">4. Feature scaling</h3>
-<p>The outliers were removed in X, and then feature scaling </p>
-<pre><code class="lang-python">from sklearn.preprocessing <span class="hljs-built_in">import</span> StandardScaler
-<span class="hljs-attr">X=rfs.iloc[:,1:]</span>
-<span class="hljs-attr">scaler</span> = StandardScaler()
-<span class="hljs-attr">X</span> = scaler.fit_transform(X)
-</code></pre>
-<h3 id="4-clustering-customers-using-kmeans">4. Clustering customers using KMeans</h3>
-<p>I adopted the Yellowbirck cluster for visualizing the Kmeans distorion score Elbow. As shown below, the k elbows at 4, indicating 4 clusters.</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1398c04e-8d19-407a-a8d1-6653e02ad672" alt="image"></p>
-<p>Then I fitted the Kmeans and then updated the RFS dataframe with teh clusters identified.</p>
-<pre><code class="lang-python"><span class="hljs-attribute">kmeans</span>= KMeans(n_clusters=4,n_init=<span class="hljs-string">'auto'</span>,random_state=42)
-kmeans.fit(X)
-</code></pre>
-<h3 id="4-results-and-findings-recency-and-spend">4. Results and findings : recency and Spend</h3>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/50c76e6a-514d-4ffd-bbab-df17a4b89970" alt="image"></p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/9dac9e13-6710-4373-ae05-4e5ab83c8d22" alt="image"></p>
-<p>These are the four clusters identified from the results</p>
-<h5 id="cluster-0-high-recency-low-frequency-low-spend">Cluster 0: High recency, low frequency , low Spend</h5>
-<h5 id="cluster-1-low-recency-high-frequency-moderate-spend">Cluster 1: Low recency, High Frequency, moderate Spend</h5>
-<h5 id="cluster-2-low-recency-low-frequency-low-spend">Cluster 2: Low Recency, Low Frequency, Low Spend</h5>
-<h5 id="cluster-3-low-recency-high-frequency-high-spend">Cluster 3: Low Recency,  High Frequency, High Spend</h5>
-<p>In addition, these are the top items by Amount spent.</p>
-<p><img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/828789d9-8209-4292-956d-362db448f755" alt="image"></p>
-<p>For more details see <a href="https://github.com/moyinajayi/Retail_customer_Clustering">Repository</a></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer segmentation with k-means | Moyin Ajayi</title>
+  <meta name="description" content="Retail customer analysis: cleaning and exploring transaction data, then segmenting customers into four groups with k-means on recency, frequency and spend.">
+  <link rel="canonical" href="https://moyinajayi.github.io/customersegmentation.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-73V81L7M1N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-73V81L7M1N');
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <a class="bar-name" href="index.html">Moyin Ajayi</a>
+    <nav aria-label="Primary">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#stack">Stack</a>
+      <a href="index.html#credentials">Background</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case">
+    <a class="back" href="index.html#projects">All projects</a>
+    <h1>Customer segmentation with k-means</h1>
+    <p class="intro">This is a data analysis project on a retail dataset: reading, cleaning and exploring the data, then using the k-means clustering algorithm to segment customers by recency, frequency and spend.</p>
+
+    <h2>1. Loading the data</h2>
+    <p>I used a dataset named OnlineRetail.csv, which holds transaction data from an online retail store. The goal was to explore the dataset, clean it, visualize the important patterns and segment the customers.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1dd5cc1a-05f8-4f53-82ab-93ed3cef801a" alt="Code that loads the online retail dataset" loading="lazy">
+    </figure>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/ef198a92-0413-4d6f-9b09-b7abd3f70b30" alt="First rows of the online retail dataset" loading="lazy">
+    </figure>
+
+    <h2>2. Visualizing the data</h2>
+    <p>After removing the null values, I created two extra columns, month and day of week, from the invoice date. The aim was to see whether the day or the month showed any pattern. The charts below show trends and distributions.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/12ea5d21-e2d4-4d01-9b60-3e779eadfd20" alt="Bar plots of transactions and spend by month and day of week" loading="lazy">
+    </figure>
+    <p>The bar plots show no transactions on Saturday. November had the most transactions, but total spend was highest in January.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/39f1f7ee-a0ab-4aa9-874f-a921c7b192af" alt="Charts of the top five countries and the top stock items purchased" loading="lazy">
+    </figure>
+    <p>These visuals also show the top five countries and the most purchased stock items.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/fa2c6cc6-828c-4e81-a884-c5253ae4185c" alt="Additional chart of top items purchased" loading="lazy">
+    </figure>
+
+    <h2>3. Recency, frequency and spend</h2>
+    <p>RFM analysis is a behaviour-based technique that segments customers by their transaction history. Recency is the number of days since a customer's last purchase, frequency is the number of transactions per customer, and spend is the total amount a customer spent.</p>
+<pre><code>last_transaction_date = df.groupby('CustomerID')['InvoiceDate'].max()
+reference_date = max(df['InvoiceDate'])
+days_difference = (reference_date - last_transaction_date).dt.days
+days_difference = days_difference.reset_index().rename(columns={'InvoiceDate': 'recency'})</code></pre>
+    <p>I merged these metrics into a single dataframe.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/0edc2421-bd39-4d44-919c-a4229c163394" alt="Dataframe combining recency, frequency and spend per customer" loading="lazy">
+    </figure>
+    <p>Boxplots show the outliers in each distribution.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/a58e8814-c381-4661-8e36-f87844461b16" alt="Boxplots of recency, frequency and spend showing outliers" loading="lazy">
+    </figure>
+    <p>The outliers were mostly in the frequency and spend columns. I removed them before applying k-means.</p>
+
+    <h2>4. Scaling the features</h2>
+    <p>With the outliers removed, I scaled the features so that no single metric dominates the clustering.</p>
+<pre><code>from sklearn.preprocessing import StandardScaler
+X = rfs.iloc[:, 1:]
+scaler = StandardScaler()
+X = scaler.fit_transform(X)</code></pre>
+
+    <h2>5. Clustering with k-means</h2>
+    <p>I used the Yellowbrick library to plot the k-means distortion score and find the elbow. The elbow sits at 4, which points to four clusters.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/1398c04e-8d19-407a-a8d1-6653e02ad672" alt="Elbow plot of k-means distortion score with the elbow at four clusters" loading="lazy">
+    </figure>
+    <p>I then fitted k-means and added the cluster labels to the recency, frequency and spend dataframe.</p>
+<pre><code>kmeans = KMeans(n_clusters=4, n_init='auto', random_state=42)
+kmeans.fit(X)</code></pre>
+
+    <h2>6. Results</h2>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/50c76e6a-514d-4ffd-bbab-df17a4b89970" alt="Clusters plotted by recency and spend" loading="lazy">
+    </figure>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/9dac9e13-6710-4373-ae05-4e5ab83c8d22" alt="Further view of the four customer clusters" loading="lazy">
+    </figure>
+    <p>These are the four clusters. Recency is days since the last purchase, so a high value means the customer has not bought recently.</p>
+    <ul class="findings">
+      <li><strong>Cluster 0:</strong> high recency, low frequency, low spend</li>
+      <li><strong>Cluster 1:</strong> low recency, high frequency, moderate spend</li>
+      <li><strong>Cluster 2:</strong> low recency, low frequency, low spend</li>
+      <li><strong>Cluster 3:</strong> low recency, high frequency, high spend</li>
+    </ul>
+    <p>Finally, these are the top items by amount spent.</p>
+    <figure>
+      <img src="https://github.com/moyinajayi/moyinajayi.github.io/assets/9222400/828789d9-8209-4292-956d-362db448f755" alt="Bar chart of top items by amount spent" loading="lazy">
+    </figure>
+
+    <p class="case-end">The full code is in the <a href="https://github.com/moyinajayi/Retail_customer_Clustering">project repository</a>.</p>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> Moyin Ajayi</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
